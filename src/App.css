@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* todoField */
+
+.navbar {
+    background-color: cornflowerblue;
+    display: block;
+}
+
+.nav_item {
+    background-color: aquamarine;
+    border-radius: 1rem;
+    padding: 0.4rem 0.6rem;
+    margin: 0.5rem 0;
+}
+
+.content {
+    text-align: center;
+    padding: 2rem;
+    background-color: bisque;
+    min-height: 100vh;
+}
+
+
+.footer {
+    background-color: aqua;
+}
+
+.list {
+    width:80% ;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: start;
+}
+
+.list_item {
+    margin: 1rem 1rem;
+    width: 300px;
+}
