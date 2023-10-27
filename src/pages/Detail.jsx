@@ -6,7 +6,7 @@ import { getDetailProduct } from '../redux/productSlice';
 import './DetailLoadingCss.css'
 import { addToCard } from '../redux/cartSlice';
 function Detail() {
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(1);
     let { id } = useParams();
     const dispatch = useDispatch();
     const { productDetail } = useSelector(state => state.products);
@@ -27,7 +27,7 @@ function Detail() {
         }
     }
     const addBasket = ()=>{
-        dispatch(addToCard({id:productDetail.id,title:productDetail.title,image:productDetail.image,quantity:productDetail.quantity,price:productDetail.price}));
+        dispatch(addToCard({id:productDetail.id,title:productDetail.title,image:productDetail.image,quantity:quantity,price:productDetail.price}));
     }
 
     if (!productDetail) {

@@ -11,7 +11,7 @@ const fetchFromLocalStorage = () => {
 }
 
 const setinLocalStorage = (data) => {
-    localStorage.setItem('cart', JSON.stringify(data))
+    localStorage.setItem('card', JSON.stringify(data))
 }
 
 
@@ -29,9 +29,9 @@ const cartSlice = createSlice({
             const isItemCart = state.carts.find(c => c.id == action.payload.id);
             if (isItemCart) {
                 const tempData = state.carts.map(cart => {
-                    if (cart.id == action.payload.id) {
-                        let tempQuantity = cart.quantity + action.payload.id;
-                        let tempTotalPrice = cart.price + tempQuantity;
+                    if (cart.id === action.payload.id) {
+                        let tempQuantity = cart.quantity + action.payload.quantity;
+                        let tempTotalPrice = cart.price * tempQuantity;
                         return {
                             ...cart,
                             quantity: tempQuantity,
@@ -39,7 +39,11 @@ const cartSlice = createSlice({
                         }
                     }
                     else {
-                        return cart;
+                        return {
+                            ...cart,
+                            quantity: action.payload.quantity,
+                            totalPrice: cart.price * action.payload.quantity
+                        }
                     }
                 })
                 state.carts = tempData;
@@ -47,19 +51,17 @@ const cartSlice = createSlice({
                 setinLocalStorage(state.carts);
             }
             else {
-                state.carts.push(action.payload);
+                state.carts.push({
+                    ...action.payload,
+                    totalPrice: action.payload.price * action.payload.quantity
+                });
                 setinLocalStorage(state.carts);
             }
         },
         removeFromCart: (state, action) => {
-            if (removeData) {
-                let newData = state.carts.filter(c => c.id !== action.payload.id);
-                state.carts = newData;
-                setinLocalStorage(sta.carts);
-            }
-            else {
-                console.log("cant find any data!");
-            }
+            let newData = state.carts.filter(c => c.id !== action.payload);
+            state.carts = newData;
+            setinLocalStorage(state.carts);
         },
         clearCart: (state) => {
             state.carts = [];
@@ -67,7 +69,7 @@ const cartSlice = createSlice({
         },
         getCartTotal: (state) => {
             state.totalAmount = state.carts.reduce((cartTotal, cartItem) => {
-                return cartTotal + cartItem.price;
+                return cartTotal + cartItem.price*cartItem.quantity;
             }, 0);
             state.ItemCount = state.carts.length;
         }
