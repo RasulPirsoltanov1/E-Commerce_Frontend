@@ -7,15 +7,15 @@ import Products from '../components/home/Products'
 import { useState } from 'react'
 
 function Home() {
-    const [sort,setSort]=useState('');
-    const [category,setCategory]=useState('');
+    const [sort, setSort] = useState('');
+    const [category, setCategory] = useState('');
     return (
         <div>
             <SliderComp />
-            <Sorting></Sorting>
-            <div>
-                <Category></Category>
-                <Products></Products>
+            <Sorting setSort={setSort}></Sorting>
+            <div className='flex flex-wrap items-center justify-around gap-20 columns-3'>
+                <Category setCategory={setCategory}></Category>
+                <Products category={category} sort={sort}></Products>
             </div>
         </div>
     )

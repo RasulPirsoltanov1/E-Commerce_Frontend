@@ -9,9 +9,10 @@ export default class SimpleSlider extends Component {
             infinite: true,
             slidesToShow: 1,
             slidesToScroll: 1,
-            speed: 300,
+            autoplay: true,
+            speed: 2000,
             autoplaySpeed: 2000,
-            cssEase: "linear"
+            cssEase: "cubic-bezier(0.600, -0.280, 0.735, 0.045)"
         };
         return (
             <div className="my-24 rounded-xl linear-color" >

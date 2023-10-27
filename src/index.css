@@ -2,6 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
-body{
+
+body {
     font-family: 'Nunito', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.paginate li {
+    background-color: rgba(209, 199, 199, 0.651);
+
+    border-radius: 2rem;
+    border: solid 1px gray;
+}
+
+.paginate {
+    margin-bottom: 3rem;
+}
+
+.paginate li:first-child {
+    background-color: rgba(148, 126, 126, 0.651);
+}
+
+.paginate li:last-child {
+    background-color: rgba(148, 126, 126, 0.651);
+}
+
+.paginate li a {
+    padding: 0.5rem 0.7rem;
 }

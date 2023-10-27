@@ -5,28 +5,44 @@ import { STATUS } from "../utils/status";
 const initialState = {
     products: [],
     productsStatus: STATUS.IDLE,
-    productDetail: [],
+    productDetail:null,
     productDetailStatus: STATUS.IDLE
 }
 
 
-export const getProducts = createAsyncThunk('getproducts', async () => {
-    const products = await fetch('https://fakestoreapi.com/products');
+export const getProducts = createAsyncThunk('getproducts', async (sort) => {
+    const products = await fetch(`https://fakestoreapi.com/products?sort=${sort}`);
     let data = products.json();
     return data;
-})
+});
 
 export const getDetailProduct = createAsyncThunk("getdetailproduct", async (id) => {
     const product = await fetch(`https://fakestoreapi.com/products/${id}`);
     let data = product.json();
     return data;
-})
+});
+
+export const getProductsByCategory = createAsyncThunk("getProductsByCategory", async (category) => {
+    const product = await fetch(`https://fakestoreapi.com/products/category/${category}`);
+    let data = product.json();
+    return data;
+});
 
 const productSlice = createSlice({
     name: "products",
     initialState: initialState,
     reducers: {},
     extraReducers: (builder) => {
+        builder.addCase(getProductsByCategory.pending,(state,action)=>{
+            state.productsStatus=STATUS.LOADING;
+        });
+        builder.addCase(getProductsByCategory.fulfilled,(state,action)=>{
+            state.products=action.payload;
+            state.productsStatus=STATUS.SUCCESS;
+        });
+        builder.addCase(getProductsByCategory.rejected,(state,action)=>{
+            state.productsStatus=STATUS.FAIL;
+        })
         // getProducts
         builder.addCase(getProducts.fulfilled, (state, action) => {
             state.productsStatus = STATUS.SUCCESS;

@@ -1,8 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function NavbarLeft() {
+  const navigator=useNavigate();
   return (
-    <div className='text-4xl'>Shop Zone</div>
+    <div className='text-4xl' onClick={()=>{
+      navigator("/");
+    }} style={{cursor:'pointer'}}>King Shop</div>
   )
 }
 
