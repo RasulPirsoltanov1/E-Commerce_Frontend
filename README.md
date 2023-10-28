@@ -1,1 +1,1 @@
-Check out : <a target="_blank" href="https://glistening-faloodeh-bbe9d0.netlify.app/">Site Link</a>
+Check out : <a target="_blank" href="https://kingshopaz.netlify.app/">Site Link</a>
