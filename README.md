@@ -1,1 +1,1 @@
-Check out : <a target="_blank" href="https://rasulpirsoltanov1.github.io/E-Commerce_Frontend/">Site Link</a>
+Check out : <a target="_blank" href="https://glistening-faloodeh-bbe9d0.netlify.app/">Site Link</a>
